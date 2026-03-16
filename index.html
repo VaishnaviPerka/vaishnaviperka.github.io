@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaishnavi Perka | Data & Business Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F7F4EF;
+    --ink: #1A1714;
+    --muted: #6B6560;
+    --accent: #2D5016;
+    --accent-light: #E8F0DE;
+    --accent-mid: #4A7A25;
+    --gold: #B8860B;
+    --gold-light: #FDF6E3;
+    --border: rgba(26,23,20,0.12);
+    --card-bg: #FFFFFF;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,244,239,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -10%; right: -5%;
+    width: 55%; height: 110%;
+    background: radial-gradient(ellipse at 70% 40%, var(--accent-light) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 700px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(45,80,22,0.2);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-mid);
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--accent-mid); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid var(--border);
+    color: var(--ink);
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* SECTION */
+  section { padding: 5rem 2.5rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+    color: var(--ink);
+  }
+
+  /* SKILLS */
+  .skills-bg { background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+  .skill-group h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 0.75rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(45,80,22,0.15);
+  }
+  .skill-tag.gold {
+    background: var(--gold-light);
+    color: var(--gold);
+    border-color: rgba(184,134,11,0.2);
+  }
+  .skill-tag.neutral {
+    background: #F1EFE8;
+    color: #5F5E5A;
+    border-color: rgba(0,0,0,0.08);
+  }
+
+  /* PROJECTS */
+  .projects-bg { background: var(--cream); }
+  .projects-grid { display: grid; gap: 1.5rem; }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover {
+    border-color: var(--accent-mid);
+    box-shadow: 0 4px 24px rgba(45,80,22,0.08);
+  }
+  .project-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.85rem;
+    color: var(--accent-mid);
+    margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: #F1EFE8;
+    color: #5F5E5A;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .project-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    height: fit-content;
+  }
+  .status-ongoing { background: var(--gold-light); color: var(--gold); border: 1px solid rgba(184,134,11,0.25); }
+  .status-done { background: var(--accent-light); color: var(--accent); border: 1px solid rgba(45,80,22,0.2); }
+
+  /* EXPERIENCE */
+  .experience-bg { background: var(--card-bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .exp-list { display: flex; flex-direction: column; gap: 2rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-date { font-size: 0.8rem; color: var(--muted); padding-top: 2px; line-height: 1.5; }
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .exp-org { font-size: 0.85rem; color: var(--accent-mid); font-weight: 500; margin-bottom: 0.75rem; }
+  .exp-bullets { list-style: none; padding: 0; }
+  .exp-bullets li {
+    font-size: 0.875rem;
+    color: var(--muted);
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent-mid);
+    font-size: 0.75rem;
+    top: 3px;
+  }
+
+  /* CONTACT */
+  .contact-bg { background: var(--accent); }
+  .contact-bg .section-label { color: rgba(255,255,255,0.6); }
+  .contact-bg .section-title { color: #fff; }
+  .contact-links { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 1rem; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.2); }
+  .contact-note { color: rgba(255,255,255,0.65); font-size: 0.875rem; margin-top: 2rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.4);
+    text-align: center; padding: 1.5rem 2.5rem;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 5rem 1.25rem 3rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#top">VP</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-content">
+    <span class="hero-badge">Open to OPT — Graduating May 2026</span>
+    <h1>Vaishnavi<br><em>Perka</em></h1>
+    <p class="hero-desc">Data Analyst & Business Analyst with a Master's in Data Science from Michigan Tech. I turn complex datasets into clear, actionable decisions — with Python, SQL, Power BI, and a strong analytical instinct.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">4</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div>
+        <span class="stat-num">7</span>
+        <span class="stat-label">ML Models Built</span>
+      </div>
+      <div>
+        <span class="stat-num">100K+</span>
+        <span class="stat-label">Records Analyzed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-bg" id="skills">
+  <div class="section-inner">
+    <p class="section-label">Toolkit</p>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Libraries</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">tidyverse</span>
+          <span class="skill-tag">caret</span>
+          <span class="skill-tag">glmnet</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Visualization</h4>
+        <div class="skill-tags">
+          <span class="skill-tag gold">Power BI</span>
+          <span class="skill-tag gold">Tableau</span>
+          <span class="skill-tag gold">DAX</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Analytics</h4>
+        <div class="skill-tags">
+          <span class="skill-tag neutral">EDA</span>
+          <span class="skill-tag neutral">A/B Testing</span>
+          <span class="skill-tag neutral">Regression</span>
+          <span class="skill-tag neutral">NLP</span>
+          <span class="skill-tag neutral">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <div class="skill-tags">
+          <span class="skill-tag neutral">Jira</span>
+          <span class="skill-tag neutral">Jupyter</span>
+          <span class="skill-tag neutral">GitHub</span>
+          <span class="skill-tag neutral">Excel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-bg" id="projects">
+  <div class="section-inner">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div>
+          <p class="project-number">01</p>
+          <h3 class="project-title">Customer Behavior & Brand Analytics</h3>
+          <p class="project-desc">Analyzed customer transaction data to estimate brand switching and repurchase rates. Built interactive Power BI dashboards using DAX to visualize behavioral patterns and brand performance. Currently developing a brand recommendation framework using historical purchase data.</p>
+          <div class="project-tags">
+            <span class="project-tag">Power BI</span>
+            <span class="project-tag">DAX</span>
+            <span class="project-tag">Excel</span>
+            <span class="project-tag">A/B Testing</span>
+            <span class="project-tag">EDA</span>
+            <span class="project-tag">VLOOKUP/XLOOKUP</span>
+          </div>
+        </div>
+        <span class="project-status status-ongoing">Ongoing</span>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <p class="project-number">02</p>
+          <h3 class="project-title">Predictive Modeling Pipeline</h3>
+          <p class="project-desc">Designed an end-to-end analytics pipeline on a 100K+ record dataset. Developed and evaluated 7 classification models using 10-fold cross-validation, achieving ~77% accuracy. Naive Bayes showed strongest generalization. Managed sprint deliverables using Jira.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">R</span>
+            <span class="project-tag">caret</span>
+            <span class="project-tag">Feature Engineering</span>
+            <span class="project-tag">Jira</span>
+            <span class="project-tag">KPI Design</span>
+          </div>
+        </div>
+        <span class="project-status status-done">Dec 2025</span>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <p class="project-number">03</p>
+          <h3 class="project-title">EV Charging Station Recommendation System</h3>
+          <p class="project-desc">Built a route-based EV charging recommendation system using real-time traffic and geographic data. Developed optimization-based routing logic to minimize battery consumption, improving route efficiency and reducing travel time by 20–30%.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Geospatial Data</span>
+            <span class="project-tag">Optimization</span>
+            <span class="project-tag">Routing Algorithms</span>
+          </div>
+        </div>
+        <span class="project-status status-done">Jan 2024</span>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <p class="project-number">04</p>
+          <h3 class="project-title">Real-Time Translation App</h3>
+          <p class="project-desc">Developed a real-time translation application for English–Spanish and English–Hindi using NLP techniques and beam search decoding. Implemented error detection and suggestion logic, improving translation quality by ~15%.</p>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">NLP</span>
+            <span class="project-tag">Beam Search</span>
+            <span class="project-tag">Error Detection</span>
+          </div>
+        </div>
+        <span class="project-status status-done">May 2024</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-bg" id="experience">
+  <div class="section-inner">
+    <p class="section-label">Career</p>
+    <h2 class="section-title">Experience & Education</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-date">Sep 2025 – Present</div>
+        <div>
+          <p class="exp-role">Teaching Assistant</p>
+          <p class="exp-org">Dept. of Physics · Michigan Technological University</p>
+          <ul class="exp-bullets">
+            <li>Lead undergraduate physics lab sessions and assist students with experiments</li>
+            <li>Develop communication, mentoring, and leadership skills through daily faculty interaction</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Feb 2025 – May 2025</div>
+        <div>
+          <p class="exp-role">Research Assistant</p>
+          <p class="exp-org">College of Business · Michigan Technological University</p>
+          <ul class="exp-bullets">
+            <li>Applied NLP techniques in R (tokenization, stop-word removal) to preprocess unstructured text</li>
+            <li>Performed lexicon-based sentiment analysis using AFINN to classify text sentiment</li>
+            <li>Communicated insights through data storytelling, charts, and GitHub documentation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Aug 2024 – May 2026</div>
+        <div>
+          <p class="exp-role">Master of Science, Data Science</p>
+          <p class="exp-org">Michigan Technological University · Houghton, MI</p>
+          <ul class="exp-bullets">
+            <li>Eligible for OPT sponsorship upon graduation in May 2026</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Open to Opportunities</h2>
+    <p style="color: rgba(255,255,255,0.8); max-width: 480px; line-height: 1.7; font-size: 0.95rem;">
+      I'm actively seeking entry-level Data Analyst and Business Analyst roles. OPT-eligible from May 2026. Let's talk about how I can add value to your team.
+    </p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:vaishnaviiperka@gmail.com">✉ vaishnaviiperka@gmail.com</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/vaishnavi-perka" target="_blank">in LinkedIn</a>
+      <a class="contact-link" href="tel:9062992579">☎ (906) 299-2579</a>
+    </div>
+    <p class="contact-note">Based in Houghton, Michigan · Open to remote & relocation</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Vaishnavi Perka · Built with care
+</footer>
+
+</body>
+</html>
